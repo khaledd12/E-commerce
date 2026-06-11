@@ -1,0 +1,29 @@
+{
+  "name": "e-commerce",
+  "version": "1.0.0",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "dev": "tsx watch src/app.ts",
+    "build": "tsc",
+    "server": "node dist/app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/mssql": "^9.1.11",
+    "@types/node": "^25.6.0",
+    "prisma": "^6.19.3",
+    "tsx": "^4.22.4"
+  },
+  "dependencies": {
+    "@prisma/adapter-mssql": "^7.6.0",
+    "@prisma/client": "^6.19.3",
+    "dotenv": "^17.4.0",
+    "express": "^5.2.1"
+  }
+}
+

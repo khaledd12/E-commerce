@@ -1,0 +1,15 @@
+I need this in clean architecture with Node, and sql database with ERD
+
+Requirements:
+	1- Auth & User Management : should implement user registration and login with email/password, 
+		JWT-based authentication with refresh tokens, role-based access control (customer, admin), password reset via email.
+	
+	2- Product Catalog : Full CRUD for products with fields like name, description, price, SKU, images, and category.
+		Should include product variants (size, color), category/subcategory management, search and filtering (by price range, category, rating), and pagination.
+	
+	3. Orders : Order lifecycle should cover: pending → confirmed → processing → shipped → delivered → cancelled/refunded.
+		Include order history for users and order management for admins.
+		
+	4. Admin APIs : Protected endpoints for managing products, users, and orders. Basic reporting: revenue totals, top products, 
+		recent orders. This is usually the last thing built but should be planned from the start.
+

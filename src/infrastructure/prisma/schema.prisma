@@ -1,0 +1,74 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id       String @id @default(uuid()) @db.UniqueIdentifier
+  name     String
+  password String
+  phone    Int
+  address  String
+  gender   String
+  age      Int
+  role_id  String  @db.UniqueIdentifier
+  role     Roles   @relation(fields: [role_id], references: [id])
+  orders   Orders[]
+  claims   Claims[]
+}
+
+model Products {
+  id          String  @id @default(uuid()) @db.UniqueIdentifier
+  name        String
+  description String
+  price       Decimal @db.Decimal(10, 2)
+  sale        Decimal @db.Decimal(10, 2)
+  instock     Boolean
+  category_id String   @db.UniqueIdentifier 
+  category    Category @relation(fields: [category_id], references: [id])   
+  orders      OrdersProduct[]
+}
+
+model Category {
+  id   String   @id @default(uuid()) @db.UniqueIdentifier
+  name String
+  products Products[]
+}
+
+model Orders {
+  id      String  @id @default(uuid()) @db.UniqueIdentifier
+  status  String
+  total   Decimal @db.Decimal(10, 2)
+  user_id String   @db.UniqueIdentifier
+  user    User     @relation(fields: [user_id], references: [id])
+  products OrdersProduct[]
+}
+
+model OrdersProduct {
+  product_id String  @db.UniqueIdentifier
+  order_id   String  @db.UniqueIdentifier
+  quantity   Int
+  total     Decimal @db.Decimal(10, 2)
+  order      Orders   @relation(fields: [order_id], references: [id])
+  product    Products @relation(fields: [product_id], references: [id])
+
+  @@id([product_id, order_id])
+}
+
+model Claims {
+  id      String @id @default(uuid()) @db.UniqueIdentifier
+  claim   String
+  user_id String  @db.UniqueIdentifier
+  user    User    @relation(fields: [user_id], references: [id])
+}
+
+model Roles {
+  id   String @id @default(uuid()) @db.UniqueIdentifier
+  name String
+  users User[]
+}
