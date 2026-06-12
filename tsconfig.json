@@ -12,7 +12,6 @@
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
 
-    "types": [],
     //For nodejs:
     "lib": ["esnext"],
     "types": ["node"],
