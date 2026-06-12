@@ -23,7 +23,6 @@ model User {
   orders   Orders[]
   claims   Claims[]
 }
-
 model Products {
   id          String   @id @default(uuid()) @db.Uuid
   name        String
